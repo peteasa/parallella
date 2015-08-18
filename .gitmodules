@@ -1,0 +1,9 @@
+[submodule "parallella-fpga"]
+	path = parallella-fpga
+	url = https://github.com/peteasa/parallella-fpga.git
+[submodule "examples"]
+	path = examples
+	url = https://github.com/peteasa/examples.git
+[submodule "parallella-yoctobuild"]
+	path = parallella-yoctobuild
+	url = https://github.com/peteasa/parallella-yoctobuild.git
