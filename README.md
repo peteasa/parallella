@@ -1,4 +1,4 @@
-# parallella playground
+# parallella playground - elink-redesign branch
 
 The aim is to create a one stop environment for parallella development
 
@@ -37,7 +37,7 @@ Checkout the branch that provides the versions that you want to use then to prep
 $ source initgitsubmodules.sh
 ```
 
-The result will be new folders `parallella-hw`, `parallella-yoctobuild`, `parallella-yoctobuild/poky`, `parallella-yoctobuild/meta-xilinx`, `parallella-yoctobuild/meta-parallella` and `parallella-yoctobuild/meta-epiphany` created from specific commits on github.`
+The result will be new folders `examples`, `parallella-fpga/parallella-hw`, `parallella-fpga/7020_hdmi`, `parallella-fpga/AdiHDLLib`, `parallella-yoctobuild`, `parallella-yoctobuild/poky`, `parallella-yoctobuild/meta-xilinx`, `parallella-yoctobuild/meta-parallella` and `parallella-yoctobuild/meta-epiphany` created from specific commits on github.`
 
 ### Setting up your shell environment
 
