@@ -1,4 +1,4 @@
-# parallella playground - elink-redesign branch
+# parallella playground
 
 The aim is to create a one stop environment for parallella development
 
@@ -7,6 +7,7 @@ The aim is to create a one stop environment for parallella development
 https://github.com/peteasa/parallella-yoctobuild - A Simple build environment for [Parallella](http://www.parallella.org/) using [Yocto](http://www.yoctoproject.org/)
 https://github.com/parallella/parallella-hw.git - PARALLELLA: Supercomputing for Everyone - open source board and FPGA designs associated with the Parallella project.
 https://github.com/analogdevicesinc/hdl - Analog Devices HDL libraries and projects
+https://github.com/Xilinx/device-tree-xlnx.git - Xilinx device-tree tcl generation scripts used with the Xilinx SDK to generate a template device tree.
 
 ### Provides:
 
@@ -15,13 +16,17 @@ A working environment for a developer to take an idea from concept to working re
 
 ## Instructions
 
-### Installing required packages
+### Installing required packages for yocto
 
 To use `yocto` you first need to install some packages. See latest [Yocto Project Quick Start](http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html). This assumes you are working on a Ubuntu machine:
 
 ```bash
 $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 ```
+
+### Installing required software for Xilinx fpga development
+
+To use the parallella template project `./parallella-fpga/7020_hdmi` you need to install Vivado 2014.4.1 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2014-4.html, download 2014.4 (Design Suite version) and 2014.4.1 update (only works with the Design Suite version)
 
 ### Cloning this repository
 
@@ -42,11 +47,13 @@ The result will be new folders `examples`, `parallella-fpga/parallella-hw`, `par
 ### Setting up your shell environment
 
 For full instructions to setup the parallella-yoctobuild environment see https://github.com/peteasa/parallella-yoctobuild
-For full instructions to setup and use xilinx tools to build an fpga using the paralllella-hw submodule visit http://parallellagram.org/
+For partial instructions to setup and use xilinx tools to build an fpga visit https://www.parallella.org/2015/03/23/new-parallella-elink-fpga-design-project-now-available-in-vivado/ but load my provided template (vivado 7020_hdmi/7020_hdmi.xpr) found in ./parallella-fpga/7020_hdmi.xpr
+For instructions that need to be adapted to add more to the fpga be inspired by http://parallellagram.org/
 
 ### Links to other information
 
-Troubleshooting notes - [Troubleshooting notes](https://github.com/peteasa/parallella-yoctobuild/wiki/Troubleshooting-notes)
+Yocto Troubleshooting notes - [Troubleshooting notes](https://github.com/peteasa/parallella-yoctobuild/wiki/Troubleshooting-notes)
+Vivado Troubleshooting notes - TODO
 
 Instructions for contributors - [Instructions for contributors](https://github.com/peteasa/parallella-yoctobuild/wiki/Instructions-for-contributors)
 
@@ -55,3 +62,5 @@ Instructions for contributors - [Instructions for contributors](https://github.c
 
   * TODO instructions for building the examples
   * TODO oh yes need to add / create the examples!
+  * TODO instructions for adding new parts from the Analog Devices libraries
+
