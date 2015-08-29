@@ -6,21 +6,9 @@ function re_source {
     exit
 }
 
-if [ $0 != "bash" ]; then
-    re_source
-    exit
-fi
-
-normalUpdate()
+function normalUpdate()
 {
-    # ensure we are on elink-redesign
-    git checkout elink-redesign
 
-    # ensure that we are tracking the remote elink-redesign branch
-    git branch --set-upstream-to=origin/elink-redesign elink-redesign
-
-    # pull in the latest changes
-    git pull
 
     # initialize all the submodules
     git submodule init
@@ -30,6 +18,20 @@ normalUpdate()
     git submodule foreach git submodule init
     git submodule foreach git submodule update
 }
+
+# ensure we are on elink-redesign
+git checkout elink-redesign
+
+# ensure that we are tracking the remote elink-redesign branch
+git branch --set-upstream-to=origin/elink-redesign elink-redesign
+
+# pull in the latest changes
+git pull
+ 
+if [ $0 != "bash" ]; then
+    re_source
+    exit
+fi
 
 # get the latest
 git fetch --all
