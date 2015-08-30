@@ -8,8 +8,6 @@ function re_source {
 
 function normalUpdate()
 {
-
-
     # initialize all the submodules
     git submodule init
     # clone the commit IDs configured in the parallella superproject

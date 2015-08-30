@@ -5,8 +5,11 @@ The aim is to create a one stop environment for parallella development
 ### References:
 
 https://github.com/peteasa/parallella-yoctobuild - A Simple build environment for [Parallella](http://www.parallella.org/) using [Yocto](http://www.yoctoproject.org/)
+
 https://github.com/parallella/parallella-hw.git - PARALLELLA: Supercomputing for Everyone - open source board and FPGA designs associated with the Parallella project.
+
 https://github.com/analogdevicesinc/hdl - Analog Devices HDL libraries and projects
+
 https://github.com/Xilinx/device-tree-xlnx.git - Xilinx device-tree tcl generation scripts used with the Xilinx SDK to generate a template device tree.
 
 ### Provides:
@@ -42,17 +45,20 @@ Checkout the branch that provides the versions that you want to use then to prep
 $ source initgitsubmodules.sh
 ```
 
-The result will be new folders `examples`, `parallella-fpga/parallella-hw`, `parallella-fpga/7020_hdmi`, `parallella-fpga/AdiHDLLib`, `parallella-yoctobuild`, `parallella-yoctobuild/poky`, `parallella-yoctobuild/meta-xilinx`, `parallella-yoctobuild/meta-parallella` and `parallella-yoctobuild/meta-epiphany` created from specific commits on github.`
+The result will be new folders `examples`, `parallella-fpga/parallella-hw`, `parallella-fpga/7020_hdmi`, `parallella-fpga/AdiHDLLib`, `parallella-yoctobuild`, `parallella-yoctobuild/poky`, `parallella-yoctobuild/meta-xilinx`, `parallella-yoctobuild/meta-parallella` and `parallella-yoctobuild/meta-epiphany` created from specific commits on github.
 
 ### Setting up your shell environment
 
 For full instructions to setup the parallella-yoctobuild environment see https://github.com/peteasa/parallella-yoctobuild
+
 For partial instructions to setup and use xilinx tools to build an fpga visit https://www.parallella.org/2015/03/23/new-parallella-elink-fpga-design-project-now-available-in-vivado/ but load my provided template (vivado 7020_hdmi/7020_hdmi.xpr) found in ./parallella-fpga/7020_hdmi.xpr
+
 For instructions that need to be adapted to add more to the fpga be inspired by http://parallellagram.org/
 
 ### Links to other information
 
 Yocto Troubleshooting notes - [Troubleshooting notes](https://github.com/peteasa/parallella-yoctobuild/wiki/Troubleshooting-notes)
+
 Vivado Troubleshooting notes - TODO
 
 Instructions for contributors - [Instructions for contributors](https://github.com/peteasa/parallella-yoctobuild/wiki/Instructions-for-contributors)
