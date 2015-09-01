@@ -19,6 +19,10 @@ A working environment for a developer to take an idea from concept to working re
 
 ## Instructions
 
+### Getting Started Guide
+
+I realise there is a lot to take in with this project so I have create a [Getting Started Guide](https://github.com/peteasa/parallella/wiki/Getting-started) and [Quick Start](https://github.com/peteasa/parallella/wiki/Quick-start) list of instructions.  [Feedback is always welcome](https://parallella.org/forums/viewtopic.php?f=49&t=3180)
+
 ### Installing required packages for yocto
 
 To use `yocto` you first need to install some packages. See latest [Yocto Project Quick Start](http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html). This assumes you are working on a Ubuntu machine:
