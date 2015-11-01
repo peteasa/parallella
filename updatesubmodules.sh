@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 function re_source {
-    echo Please type:
-    echo "source $0"
+    echo Please run from the command line with:
+    echo "source updatesubmodules.sh"
+    sleep 5
     exit
 }
 
@@ -25,11 +26,14 @@ git branch --set-upstream-to=origin/elink-redesign elink-redesign
 
 # pull in the latest changes
 git pull
- 
-if [ $0 != "bash" ]; then
+
+if [ `basename "$0"` != "bash" ]; then
     re_source
     exit
 fi
+
+# The following part of the script seems to run better if
+# you run from the command line with source updatesubmodules.sh
 
 # get the latest
 git fetch --all

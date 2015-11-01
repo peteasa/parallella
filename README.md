@@ -59,6 +59,36 @@ For partial instructions to setup and use xilinx tools to build an fpga visit ht
 
 For instructions that need to be adapted to add more to the fpga be inspired by http://parallellagram.org/
 
+### EXPERIMENTAL: Adding your own projects or modifying this environment
+
+There are four folders in .gitignore that are ignored by this repository.  You can use these folder to store code for your own projects:
+
+```bash
+$ mkdir mywork
+$ mkdir project
+$ mkdir projects
+$ mkdir test
+```
+
+There is a corresponding folder in the parallella-yoctobuild directory for the yocto changes that you might need to make for your project. And a corresponding folder in the parallella-fpga directory for your fpga project.  If you use these folders for your work then you dont need to modify any of the files I provide, making git updating easier (no conflicts or local checked out files).
+
+You may need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files please consider running 
+
+```bash
+cd parallella-fpga
+git clean -d -n ./
+```
+
+and if happy with the changes that will be made
+
+```bash
+git clean -d -f ./
+```
+
+Before you run updatesubmodules.sh to update and get the latest versions of the git submodules.
+
+These instructions are experimental at this time. 
+
 ### Links to other information
 
 Yocto Troubleshooting notes - [Troubleshooting notes](https://github.com/peteasa/parallella-yoctobuild/wiki/Troubleshooting-notes)
