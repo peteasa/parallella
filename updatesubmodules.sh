@@ -18,15 +18,6 @@ function normalUpdate()
     git submodule foreach git submodule update
 }
 
-# ensure we are on elink-redesign
-git checkout elink-redesign
-
-# ensure that we are tracking the remote elink-redesign branch
-git branch --set-upstream-to=origin/elink-redesign elink-redesign
-
-# pull in the latest changes
-git pull
-
 if [ `basename "$0"` != "bash" ]; then
     re_source
     exit
@@ -37,6 +28,8 @@ fi
 
 # get the latest
 git fetch --all
+git submodule foreach git fetch --all
+git submodule foreach git submodule foreach git fetch --all
 
 let changes=0
 while read status filename; do
@@ -50,6 +43,16 @@ while read status filename; do
 done < <(git status --porcelain)
 if [ $changes == 0 ]; then
     echo No changes
+
+    # ensure we are on elink-redesign
+    git checkout elink-redesign
+
+    # ensure that we are tracking the remote elink-redesign branch
+    git branch --set-upstream-to=origin/elink-redesign elink-redesign
+
+    # pull in the latest changes
+    git pull
+    
     normalUpdate
     echo Done Update
 else
@@ -66,4 +69,6 @@ else
     echo then rerun source $0 to update
     echo ------------
 fi
+
+
 
