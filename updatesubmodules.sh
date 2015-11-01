@@ -28,8 +28,10 @@ fi
 
 # get the latest
 git fetch --all
-git submodule foreach git fetch --all
-git submodule foreach git submodule foreach git fetch --all
+# dont think this needs to be recursive, just ensure that the
+# top level is fetched.
+# git submodule foreach git fetch --all
+# git submodule foreach git submodule foreach git fetch --all
 
 let changes=0
 while read status filename; do
@@ -66,7 +68,19 @@ else
     echo git checkout -- recipes-bsp/bitstream/parallella-hdmi-bitstream.bbappend
     echo
     echo will remove any modifications that you have made to add your own bitstream spec to the build
-    echo then rerun source $0 to update
+    echo
+    echo You may also need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files please consider running 
+    echo for example to remove generated files in the fpga folder run
+    echo cd parallella-fpga
+    echo git clean -d -n ./
+    echo and if happy with the changes that will be made
+    echo git clean -d -f ./
+    echo
+    echo then rerun source updatesubmodules.sh to update
+    echo
+    echo To make updates easier in the future consider putting your work
+    echo in one of the .gitignore folders for example mywork, project, projects, test
+    echo see each submodules .gitignore for details.
     echo ------------
 fi
 
