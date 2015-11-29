@@ -47,7 +47,7 @@ if [ $changes == 0 ]; then
     echo No changes
 
     # ensure we are on elink-redesign
-    git checkout elink-redesign
+    git checkout parallella-oh
 
     # ensure that we are tracking the remote elink-redesign branch
     git branch --set-upstream-to=origin/elink-redesign elink-redesign
