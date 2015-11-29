@@ -46,11 +46,13 @@ done < <(git status --porcelain)
 if [ $changes == 0 ]; then
     echo No changes
 
-    # ensure we are on elink-redesign
-    git checkout parallella-oh
+    let branch=parallella-oh
+    
+    # ensure we are on parallella-oh
+    git checkout $branch
 
-    # ensure that we are tracking the remote elink-redesign branch
-    git branch --set-upstream-to=origin/elink-redesign elink-redesign
+    # ensure that we are tracking the remote branch
+    git branch --set-upstream-to=origin/$branch $branch
 
     # pull in the latest changes
     git pull
