@@ -1,4 +1,4 @@
-# parallella playground
+# parallella playground - parallella-oh branch
 
 The aim is to create a one stop environment for parallella development
 
@@ -33,7 +33,7 @@ $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib bu
 
 ### Installing required software for Xilinx fpga development
 
-To use the parallella template project `./parallella-fpga/7020_hdmi` you need to install Vivado 2014.4.1 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2014-4.html, download 2014.4 (Design Suite version) and 2014.4.1 update (only works with the Design Suite version)
+To use the parallella template project `./parallella-fpga/7020_hdmi` you need to install Vivado 2015.2 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2015-2.html, download 2015.2.  I have not tried the 2015.2.1 update.  I am just using 2015.2.
 
 ### Cloning this repository
 
@@ -41,6 +41,7 @@ Clone this repository onto your Linux build machine:
 ```bash
 $ git clone git@github.com:peteasa/parallella
 $ cd parallella
+$ git checkout origin/parallella-oh
 ```
 
 Checkout the branch that provides the versions that you want to use then to prepare the environment and download the necessary git submodules, you need to run the `initgitsubmodules.sh` script. This only needs to be done once:
