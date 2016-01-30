@@ -33,9 +33,9 @@ git fetch --all
 # git submodule foreach git fetch --all
 # git submodule foreach git submodule foreach git fetch --all
 
-let changes=0
+changes=0
 while read status filename; do
-    let changes=1
+    changes=1
 
     echo error: Changes detected in $filename
     echo suggest update to latest by hand
@@ -46,9 +46,12 @@ done < <(git status --porcelain)
 if [ $changes == 0 ]; then
     echo No changes
 
-    let branch=parallella-oh
+    branch="parallella-oh"
     
     # ensure we are on parallella-oh
+    echo ------------
+    echo "INFO:  Update branch $branch"
+    echo ------------
     git checkout $branch
 
     # ensure that we are tracking the remote branch
