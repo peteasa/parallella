@@ -72,11 +72,8 @@ else
     echo will remove any modifications that you have made to add your own bitstream spec to the build
     echo
     echo You may also need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files please consider running 
-    echo for example to remove generated files in the fpga folder run
-    echo cd parallella-fpga
-    echo git clean -d -n ./
-    echo and if happy with the changes that will be made
-    echo git clean -d -f ./
+    echo To help with this look at parallella-fpga/revertlocalchanges.sh and
+    echo consider running that script to clean out the fpga folders
     echo
     echo then rerun source updatesubmodules.sh to update
     echo
