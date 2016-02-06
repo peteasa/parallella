@@ -64,24 +64,27 @@ if [ $changes == 0 ]; then
     echo Done Update
 else
     echo ------------
-    echo Suggest you update specific content individually
-    echo consider checking in your changes and then merging latest branch
-    echo alternative is to clean the repositories and re-run this command
+    echo Suggest you update specific content individually.
+    echo Consider checking in your changes on a personal branch and then merging
+    echo latest branch.  An alternative is to clean the repositories and re-run
+    echo source updatesubmodules.sh to update.
     echo
-    echo for example reset changes for all changed files like this:
+    echo For example reset changes for all changed files like this:
     echo cd parallella-yoctobuild/meta-example
     echo git checkout -- recipes-bsp/bitstream/parallella-hdmi-bitstream.bbappend
     echo
-    echo will remove any modifications that you have made to add your own bitstream spec to the build
+    echo The above command will remove any modifications that you have made
+    echo to add your own bitstream spec to the build.
     echo
-    echo You may also need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files please consider running 
-    echo To help with this look at parallella-fpga/revertlocalchanges.sh and
-    echo consider running that script to clean out the fpga folders
+    echo You may also need to clean the parallella-fpga project before you attempt
+    echo to update.  To help with cleaning the parallella-fpga project look at
+    echo parallella-fpga/revertlocalchanges.sh and consider running that script
+    echo to clean the fpga folders.
     echo
-    echo then rerun source updatesubmodules.sh to update
+    echo Once cleaned rerun source updatesubmodules.sh to update
     echo
-    echo To make updates easier in the future consider putting your work
-    echo in one of the .gitignore folders for example mywork, project, projects, test
+    echo To make updates easier in the future consider putting your work in one
+    echo of the .gitignore folders for example mywork, project, projects, test
     echo see each submodules .gitignore for details.
     echo ------------
 fi
