@@ -46,9 +46,9 @@ done < <(git status --porcelain)
 if [ $changes == 0 ]; then
     echo No changes
 
-    branch="parallella-oh"
+    branch="parallella-elink-redesign"
     
-    # ensure we are on parallella-oh
+    # ensure we are on parallella-elink-redesign
     echo ------------
     echo "INFO:  Update branch $branch"
     echo ------------
