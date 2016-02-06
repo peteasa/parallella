@@ -1,4 +1,4 @@
-# parallella playground - parallella-oh branch
+# parallella playground - parallella-elink-redesign branch
 
 The aim is to create a one stop environment for parallella development
 
@@ -41,7 +41,7 @@ Clone this repository onto your Linux build machine:
 ```bash
 $ git clone git@github.com:peteasa/parallella
 $ cd parallella
-$ git checkout origin/parallella-oh
+$ git checkout origin/parallella-elink-redesign
 ```
 
 Checkout the branch that provides the versions that you want to use then to prepare the environment and download the necessary git submodules, you need to run the `initgitsubmodules.sh` script. This only needs to be done once:
@@ -50,7 +50,7 @@ Checkout the branch that provides the versions that you want to use then to prep
 $ source initgitsubmodules.sh
 ```
 
-The result will be new folders `examples`, `parallella-fpga/parallella-hw`, `parallella-fpga/7020_hdmi`, `parallella-fpga/AdiHDLLib`, `parallella-yoctobuild`, `parallella-yoctobuild/poky`, `parallella-yoctobuild/meta-xilinx`, `parallella-yoctobuild/meta-parallella` and `parallella-yoctobuild/meta-epiphany` created from specific commits on github.
+The result will be new folders `examples`, `parallella-fpga/oh`, `parallella-fpga/7020_hdmi`, `parallella-fpga/AdiHDLLib`, `parallella-yoctobuild`, `parallella-yoctobuild/poky`, `parallella-yoctobuild/meta-xilinx`, `parallella-yoctobuild/meta-parallella` and `parallella-yoctobuild/meta-epiphany` created from specific commits on github.
 
 ### Setting up your shell environment
 
@@ -73,17 +73,11 @@ $ mkdir test
 
 There is a corresponding folder in the parallella-yoctobuild directory for the yocto changes that you might need to make for your project. And a corresponding folder in the parallella-fpga directory for your fpga project.  If you use these folders for your work then you dont need to modify any of the files I provide, making git updating easier (no conflicts or local checked out files).
 
-You may need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files please consider running 
+**DANGER** You may need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files and may also remove some files that you want to keep please take care, but consider running 
 
 ```bash
 cd parallella-fpga
-git clean -d -n ./
-```
-
-and if happy with the changes that will be made
-
-```bash
-git clean -d -f ./
+source revertlocalchanges.sh
 ```
 
 Before you run updatesubmodules.sh to update and get the latest versions of the git submodules.
