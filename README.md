@@ -6,7 +6,7 @@ The aim is to create a one stop environment for parallella development
 
 https://github.com/peteasa/parallella-yoctobuild - A Simple build environment for [Parallella](http://www.parallella.org/) using [Yocto](http://www.yoctoproject.org/)
 
-https://github.com/parallella/parallella-hw.git - PARALLELLA: Supercomputing for Everyone - open source board and FPGA designs associated with the Parallella project.
+https://github.com/parallella/oh.git - PARALLELLA: Supercomputing for Everyone - open hardware FPGA design associated with the Parallella project.
 
 https://github.com/analogdevicesinc/hdl - Analog Devices HDL libraries and projects
 
@@ -33,7 +33,7 @@ $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib bu
 
 ### Installing required software for Xilinx fpga development
 
-To use the parallella template project `./parallella-fpga/7020_hdmi` you need to install Vivado 2015.2 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2015-2.html, download 2015.2.  I have not tried the 2015.2.1 update.  I am just using 2015.2.
+To use the parallella template project ./parallella-fpga/7020_hdmi you need to install Vivado 2015.2 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2015-2.html, download 2015.2. I am also using the 2015.2.1 update.
 
 ### Cloning this repository
 
@@ -56,11 +56,19 @@ The result will be new folders `examples`, `parallella-fpga/oh`, `parallella-fpg
 
 For full instructions to setup the parallella-yoctobuild environment see https://github.com/peteasa/parallella-yoctobuild
 
-For partial instructions to setup and use xilinx tools to build an fpga visit https://www.parallella.org/2015/03/23/new-parallella-elink-fpga-design-project-now-available-in-vivado/ but load my provided template (vivado 7020_hdmi/7020_hdmi.xpr) found in ./parallella-fpga/7020_hdmi.xpr
+For partial instructions to setup and use xilinx tools to build an fpga visit https://www.parallella.org/2015/03/23/new-parallella-elink-fpga-design-project-now-available-in-vivado/.  I provide a top level makefile to build the parallella fpga.
+
+```bash
+$ source xilinx/Vivado/2015.2/settings64.sh
+$ cd ./parallella-fpga
+$ make all
+```
+
+If all goes well after the make process is done the ./parallella-fpga/7020_hdmi and ./parallella-fpga/7010_hdmi folders will contain a bitstream.
 
 For instructions that need to be adapted to add more to the fpga be inspired by http://parallellagram.org/
 
-### EXPERIMENTAL: Adding your own projects or modifying this environment
+### Adding your own projects or modifying this environment
 
 There are four folders in .gitignore that are ignored by this repository.  You can use these folder to store code for your own projects:
 
@@ -73,7 +81,7 @@ $ mkdir test
 
 There is a corresponding folder in the parallella-yoctobuild directory for the yocto changes that you might need to make for your project. And a corresponding folder in the parallella-fpga directory for your fpga project.  If you use these folders for your work then you dont need to modify any of the files I provide, making git updating easier (no conflicts or local checked out files).
 
-**DANGER** You may need to clean the parallella-fpga project before you attempt to update.  As this will remove a lot of generated files and may also remove some files that you want to keep please take care, but consider running 
+**DANGER** You may need to clean the parallella-fpga project before you attempt to update. As this will remove a lot of generated files and may also remove some files that you want to keep please take care, but consider running
 
 ```bash
 cd parallella-fpga
@@ -82,7 +90,16 @@ source revertlocalchanges.sh
 
 Before you run updatesubmodules.sh to update and get the latest versions of the git submodules.
 
-These instructions are experimental at this time. 
+### Changing branch
+
+You may wish to change branch.  For example parallella-elink-redesign branch contains a sample yocto layer.  To make this process easy run the following from the parallella folder:
+
+```bash
+$ git fetch --all
+$ git checkout parallella-elink-redesign
+$ git submodule update
+$ source ./updatesubmodules.sh
+```
 
 ### Links to other information
 
