@@ -100,9 +100,21 @@ You may wish to change branch.  For example parallella-elink-redesign branch con
 ```bash
 $ git fetch --all
 $ git checkout parallella-elink-redesign
+$ git submodule sync
 $ git submodule update
 $ source ./updatesubmodules.sh
 ```
+
+### Updates to submodules
+
+From time to time I update the source of the submodules or add new submodules.  It is a good idea to run git submodule sync in each submodule:
+
+```bash
+$ git submodule sync
+$ git submodule git submodule foreach git sync
+```
+
+so that the contents of the .gitmodules are read and any changes are made.  I have included these commands in the scripts to give you an idea about the sequence.
 
 ### Links to other information
 
