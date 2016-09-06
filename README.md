@@ -20,6 +20,10 @@ As an option you can use the Xilinx tools to build the parallella fpga or you ca
 
 The main requirement is for a few build essentials required for the Yocto Linux build, but after that the job of ensuring that the matching Linux, Analog Devices hdl, Open Hardware is provided by choosing the appropriate branch in this repository and checking out the matching submodules.
 
+Two branches are significant in this repository:
+
+- [elink-redesign](https://github.com/peteasa/parallella) - this branch
+- [parallella-elink-redesign](https://github.com/peteasa/parallella/tree/parallella-elink-redesign) - contains an example layer that demonstrates how to extend the yocto build to add your own design.  See the [parallella](https://github.com/peteasa/parallella/wiki) project for more details and Tutorials
 
 ## Instructions
 
@@ -93,17 +97,16 @@ source revertlocalchanges.sh
 
 Before you run updatesubmodules.sh to update and get the latest versions of the git submodules.
 
-### Changing branch
+### Update and Changing branch
 
 You may wish to change branch.  For example parallella-elink-redesign branch contains a sample yocto layer.  To make this process easy run the following from the parallella folder:
 
 ```bash
-$ git fetch --all
 $ git checkout parallella-elink-redesign
-$ git submodule sync
-$ git submodule update
 $ source ./updatesubmodules.sh
 ```
+
+Note that git submodules and git subtree are not easy to manage.  Usually this script will work.  If it does not then follow the instructions and tidy up by hand.  For example a recent change was to remove parallella-yoctobuild/meta-xilinx.  Running the above script could produce a "Warning: Changes detected in parallella-yoctobuild/meta-xilinx/". Go to the offending submodule and use "git gui" to view the changes in the submodule.  In this case simply remove the folder meta-xilinx to remove the warning, in other cases it may not be so easy. Always backup or commit any changes that you have made before running these scripts!
 
 ### Updates to submodules
 
@@ -111,7 +114,7 @@ From time to time I update the source of the submodules or add new submodules.  
 
 ```bash
 $ git submodule sync
-$ git submodule git submodule foreach git sync
+$ git submodule foreach git submodule sync
 ```
 
 so that the contents of the .gitmodules are read and any changes are made.  I have included these commands in the scripts to give you an idea about the sequence.
