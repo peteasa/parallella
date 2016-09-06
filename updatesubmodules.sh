@@ -1,11 +1,16 @@
 #!/bin/bash
 
 function re_source {
-    echo Please run from the command line with:
-    echo "source updatesubmodules.sh"
-    sleep 5
-    exit
+    echo ERROR Please run from the command line with:
+    echo "source ./updatesubmodules.sh"
+    sleep 2
+    [[ $PS1 ]] && return || exit;
 }
+
+if [[ $_ = $0 ]]
+then
+    re_source
+fi
 
 function normalUpdate()
 {
@@ -20,76 +25,84 @@ function normalUpdate()
     git submodule foreach git submodule update
 }
 
-if [ `basename "$0"` != "bash" ]; then
-    re_source
-    exit
-fi
+function abandon()
+{
+    echo INFO: Suggest update to latest by hand
+    echo ------------
+    echo updatesubmodules abandoned
+}
+
+function message()
+{
+    echo ------------
+    echo Changes in the source tree have been detected. Either discard the changes
+    echo For example:
+    echo "  cd parallella-yoctobuild/meta-example"
+    echo "  git checkout -- recipes-bsp/bitstream/parallella-hdmi-bitstream.bbappend"
+    echo
+    echo Or in parallella-fpga consider running the clean script
+    echo "  cd parallella-fpga"
+    echo "  source revertlocalchanges.sh"
+    echo
+    echo Or check in the changes you want to keep.
+    echo
+    echo To the make updates easier in the future consider putting your work in one
+    echo of the .gitignore folders for example mywork, project, projects, test
+    echo see each submodules .gitignore for details.
+    echo ------------
+}
+
+changes=0
+
+function checkchanges()
+{
+    pwd=`pwd`
+    cd $1
+    while read status filename; do
+        changes=1
+
+        echo ------------
+        echo Warning: Changes detected in $1/$filename
+    done < <(git status --porcelain)
+
+    cd $pwd
+}
 
 # The following part of the script seems to run better if
 # you run from the command line with source updatesubmodules.sh
 
-# get the latest
-git fetch --all
-# dont think this needs to be recursive, just ensure that the
-# top level is fetched.
-# git submodule foreach git fetch --all
-# git submodule foreach git submodule foreach git fetch --all
+## This script will change the current branch to:
+branch="elink-redesign"
 
-changes=0
-while read status filename; do
-    changes=1
+echo ------------
+echo "INFO:  Checkout $branch"
+echo ------------
+git checkout $branch
 
-    echo error: Changes detected in $filename
-    echo suggest update to latest by hand
-    echo ------------
-    echo abandoned
-    echo ------------
-done < <(git status --porcelain)
-if [ $changes == 0 ]; then
-    echo No changes
-
-    branch="elink-redesign"
-    
-    # ensure we are on elink-redesign
-    echo ------------
-    echo "INFO:  Update branch $branch"
-    echo ------------
-    git checkout $branch
+if [[ $? == 0 ]]; then
 
     # ensure that we are tracking the remote branch
     git branch --set-upstream-to=origin/$branch $branch
 
-    # pull in the latest changes
-    git pull
-    
+    # get the latest
+    git fetch --all
+
+    echo ------------
+    echo "INFO:  Merge origin/$branch into $branch to update to latest"
+    echo ------------
+    git merge origin/$branch --no-edit
+
     normalUpdate
-    echo Done Update
+
 else
-    echo ------------
-    echo Suggest you update specific content individually.
-    echo Consider checking in your changes on a personal branch and then merging
-    echo latest branch.  An alternative is to clean the repositories and re-run
-    echo source updatesubmodules.sh to update.
-    echo
-    echo For example reset changes for all changed files like this:
-    echo cd parallella-yoctobuild/meta-example
-    echo git checkout -- recipes-bsp/bitstream/parallella-hdmi-bitstream.bbappend
-    echo
-    echo The above command will remove any modifications that you have made
-    echo to add your own bitstream spec to the build.
-    echo
-    echo You may also need to clean the parallella-fpga project before you attempt
-    echo to update.  To help with cleaning the parallella-fpga project look at
-    echo parallella-fpga/revertlocalchanges.sh and consider running that script
-    echo to clean the fpga folders.
-    echo
-    echo Once cleaned rerun source updatesubmodules.sh to update
-    echo
-    echo To make updates easier in the future consider putting your work in one
-    echo of the .gitignore folders for example mywork, project, projects, test
-    echo see each submodules .gitignore for details.
-    echo ------------
+    abandon
 fi
 
+echo "INFO: Looking for changes in all submodules"
+checkchanges .
+checkchanges parallella-yoctobuild
+checkchanges parallella-fpga
 
-
+if [[ $changes == 1 ]]; then
+    message
+fi
