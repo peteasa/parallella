@@ -14,8 +14,16 @@ https://github.com/Xilinx/device-tree-xlnx.git - Xilinx device-tree tcl generati
 
 ### Provides:
 
-A working environment for a developer to take an idea from concept to working release on the Parallella platform.  The Xilinx tools are required to build the parallella fpga and a few build essentials are required for the Yocto Linux build, but after that the job of ensuring that the matching Linux, Analog Devices hdl, Open Hardware is provided by choosing the appropriate branch in this repository and checking out the matching submodules.
+A working environment for a developer to take an idea from concept to working release on the Parallella platform.
 
+As an option you can use the Xilinx tools to build the parallella fpga or you can use the fpga that I have pre-built.
+
+The main requirement is for a few build essentials required for the Yocto Linux build, but after that the job of ensuring that the matching Linux, Analog Devices hdl, Open Hardware is provided by choosing the appropriate branch in this repository and checking out the matching submodules.
+
+Two branches are significant in this repository:
+
+- [elink-redesign](https://github.com/peteasa/parallella/tree/elink-redesign) - the default branch
+- [parallella-elink-redesign](https://github.com/peteasa/parallella/tree/parallella-elink-redesign) - this branch - that is the same as elink-redesign with the addition of an example layer that demonstrates how to extend the yocto build to add your own design.  See the [parallella](https://github.com/peteasa/parallella/wiki) project for more details and Tutorials
 
 ## Instructions
 
@@ -33,7 +41,7 @@ $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib bu
 
 ### Installing required software for Xilinx fpga development
 
-To use the parallella template project ./parallella-fpga/7020_hdmi you need to install Vivado 2015.2 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2015-2.html, download 2015.2. I am also using the 2015.2.1 update.
+As an option you can build the oh fpga in ./parallella-fpga or you can use the bit bin files I provide in ./examples/fpga/bitstreams.  To build your own fpga with the parallella template project ./parallella-fpga/7020_hdmi you need to install Vivado 2015.2 see http://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2015-2.html, download 2015.2. I am also using the 2015.2.1 update.  Once Vivado is installed and setup it is as simple as running make to create the bitstream!
 
 ### Cloning this repository
 
@@ -97,9 +105,21 @@ You may wish to change branch.  For example parallella-elink-redesign branch con
 ```bash
 $ git fetch --all
 $ git checkout parallella-elink-redesign
+$ git submodule sync
 $ git submodule update
 $ source ./updatesubmodules.sh
 ```
+
+### Updates to submodules
+
+From time to time I update the source of the submodules or add new submodules.  It is a good idea to run git submodule sync in each submodule:
+
+```bash
+$ git submodule sync
+$ git submodule git submodule foreach git sync
+```
+
+so that the contents of the .gitmodules are read and any changes are made.  I have included these commands in the scripts to give you an idea about the sequence.
 
 ### Links to other information
 
